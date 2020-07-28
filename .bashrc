@@ -4,6 +4,8 @@
 
 force_color_prompt=yes;
 export PATH=$PATH:/opt/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu/bin
+export I3_SOC_TOOLCHAIN=/root/EduKit/linaro-4.9.4-gcc/bin
+export PATH=$PATH:$I3_SOC_TOOLCHAIN
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
