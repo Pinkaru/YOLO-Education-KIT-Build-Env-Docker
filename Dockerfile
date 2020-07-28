@@ -1,14 +1,35 @@
-FROM ubuntu:20.04
+FROM ubuntu:18.04
 
 RUN apt -y update
+RUN apt -y install apt-utils dialog
 RUN apt -y install vim cmake wget
+RUN apt -y install ssh
+RUN mkdir /root/.ssh/
+RUN mkdir /root/work
+ADD gitlab_ssh_key/* /root/.ssh/
+
+RUN apt -y install git
+RUN apt -y install device-tree-compiler
+RUN apt -y install u-boot-tools
+RUN apt -y install libncurses5-dev
+RUN apt -y install python
+RUN apt -y install sunxi-tools
+
+RUN mkdir /root/EduKit
+WORKDIR /root/EduKit
+
+
+RUN git clone git@gitlab.com:educational-kit_yolo/i3-bsp/u-boot.git
+RUN git clone git@gitlab.com:educational-kit_yolo/i3-bsp/preboot-config.git
+RUN git clone git@gitlab.com:educational-kit_yolo/i3-bsp/buildroot.git
+RUN git clone git@gitlab.com:educational-kit_yolo/actuator_and_sensor.git
+RUN git clone git@gitlab.com:educational-kit_yolo/i3-bsp/linaro-4.9.4-gcc.git
+RUN git clone git@gitlab.com:educational-kit_yolo/i3-bsp/debian.git
+RUN git clone git@gitlab.com:educational-kit_yolo/i3-bsp/kernel.git
+RUN git clone git@gitlab.com:educational-kit_yolo/camera.git
+RUN git clone git@gitlab.com:educational-kit_yolo/ai-demo.git
 
 WORKDIR /opt/
-RUN wget https://releases.linaro.org/components/toolchain/binaries/6.3-2017.05/aarch64-linux-gnu/gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu.tar.xz
-RUN wget https://dl.bintray.com/boostorg/release/1.69.0/source/boost_1_69_0.tar.gz
-RUN tar -xf gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu.tar.xz
-RUN tar -xzf boost_1_69_0.tar.gz
-RUN rm gcc-linaro-6.3.1-2017.05-x86_64_aarch64-linux-gnu.tar.xz boost_1_69_0.tar.gz
 
 COPY .bashrc /root/
 

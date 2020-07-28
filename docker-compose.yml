@@ -1,10 +1,10 @@
 version: "2.0"
 services:
-  rk_build:
+  i3-build:
     build:
         context: .
         dockerfile: Dockerfile
-    container_name: rk1808-build
+    container_name: EMBED-EduKit-Build
     volumes:
       - "./work:/root/work"
     command: /bin/bash
