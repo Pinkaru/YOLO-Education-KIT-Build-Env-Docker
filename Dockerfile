@@ -7,6 +7,7 @@ RUN apt -y install ssh
 RUN mkdir /root/.ssh/
 RUN mkdir /root/work
 ADD gitlab_ssh_key/* /root/.ssh/
+RUN chmod 0400 /root/.ssh/*
 
 RUN apt -y install git
 RUN apt -y install device-tree-compiler
